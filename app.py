@@ -82,8 +82,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# URL pública confiable del Logo UMG
-LOGO_UMG_URL = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo-UMG.png"
+# Enlace directo al logo subido en tu repositorio de GitHub (en minúscula: logo.png)
+LOGO_UMG_URL = "https://raw.githubusercontent.com/Guixxe123/Tarea-Matediscreta/main/logo.png"
 
 # ---------------------------------------------------------
 # PANTALLA 1: PORTADA / BIENVENIDA (ANTES DE INGRESAR)
