@@ -82,14 +82,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# URL pública confiable del Logo UMG
+LOGO_UMG_URL = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo-UMG.png"
+
 # ---------------------------------------------------------
 # PANTALLA 1: PORTADA / BIENVENIDA (ANTES DE INGRESAR)
 # ---------------------------------------------------------
 if not st.session_state.ingresado:
-    # Encabezado con Logo y Colores UMG
-    st.markdown("""
+    st.markdown(f"""
         <div class="umg-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Logo-UMG.png/320px-Logo-UMG.png" width="110" style="margin-bottom: 15px;">
+            <img src="{LOGO_UMG_URL}" width="120" style="margin-bottom: 15px; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));">
             <h1>UNIVERSIDAD MARIANO GÁLVEZ DE GUATEMALA</h1>
             <h3>Facultad de Ingeniería en Sistemas de Información y Ciencias de la Computación</h3>
             <p style="font-size: 1.15rem; color: #E0E0E0; margin-top: 10px;">
@@ -101,7 +103,6 @@ if not st.session_state.ingresado:
     st.markdown("### 👥 Integrantes del Equipo de Trabajo")
     st.write("Estudiantes encargados del desarrollo de esta plataforma:")
     
-    # Datos de los 5 integrantes
     students = [
         ("Anderson Geovany Lima Martínez", "5990 - 25 - 5819"),
         ("Ananda Saraí Samayoa", "5990 - 26 - 6172"),
@@ -123,7 +124,6 @@ if not st.session_state.ingresado:
             
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Botón de Ingreso
     c1, c2, c3 = st.columns([1, 2, 1])
     with c2:
         st.button("🚀 INGRESAR A LA APLICACIÓN", on_click=ingresar)
@@ -132,7 +132,6 @@ if not st.session_state.ingresado:
 # APLICACIÓN PRINCIPAL (UNA VEZ SE PRESIONA INGRESAR)
 # ---------------------------------------------------------
 else:
-    # Barra lateral
     st.sidebar.markdown("### 🎓 UMG Discretas")
     st.sidebar.write("**Universidad Mariano Gálvez**")
     
@@ -149,13 +148,10 @@ else:
         st.session_state.ingresado = False
         st.rerun()
 
-    # ---------------------------------------------------------
-    # VER PORTADA DESDE EL MENÚ
-    # ---------------------------------------------------------
     if opcion == "📋 Portada / Carátula":
-        st.markdown("""
+        st.markdown(f"""
             <div class="umg-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Logo-UMG.png/320px-Logo-UMG.png" width="90" style="margin-bottom: 10px;">
+                <img src="{LOGO_UMG_URL}" width="100" style="margin-bottom: 10px;">
                 <h1>UNIVERSIDAD MARIANO GÁLVEZ DE GUATEMALA</h1>
                 <h3>Facultad de Ingeniería en Sistemas</h3>
             </div>
@@ -172,9 +168,6 @@ else:
         for name, carnet in students:
             st.write(f"* **{name}** — *Carnet: {carnet}*")
 
-    # ---------------------------------------------------------
-    # MÓDULO 1: COMBINACIONES Y PERMUTACIONES
-    # ---------------------------------------------------------
     elif opcion == "1. Combinaciones y Permutaciones":
         st.title("🔢 Combinaciones y Permutaciones")
         
@@ -202,9 +195,6 @@ else:
                     st.latex(rf"P({n}, {r}) = \frac{{{n}!}}{{({n}-{r})!}} = {res}")
                     st.success(f"**Resultado:** Existen **{res}** formas posibles de permutar los elementos.")
 
-    # ---------------------------------------------------------
-    # MÓDULO 2: PRODUCTO CARTESIANO
-    # ---------------------------------------------------------
     elif opcion == "2. Producto Cartesiano":
         st.title("✖️ Producto Cartesiano")
         
@@ -237,15 +227,11 @@ else:
                 st.write(f"**Resultado ({len(prod)} elementos):**")
                 st.code(f"A × B × C = {prod}")
 
-    # ---------------------------------------------------------
-    # MÓDULO 3: DIAGRAMAS DE VENN (2 Y 3 CONJUNTOS)
-    # ---------------------------------------------------------
     elif opcion == "3. Valores de Áreas (Diagrama de Venn)":
         st.title("⚪ Valores de Áreas de Diagrama de Venn")
         
         cant_conjuntos = st.radio("¿Cuántos conjuntos deseas relacionar?", [2, 3], horizontal=True)
         
-        # ------------------ 2 CONJUNTOS ------------------
         if cant_conjuntos == 2:
             st.subheader("Selecciona el valor a calcular (Incógnita):")
             incognita = st.selectbox("Variable incógnita (?):", [
@@ -299,7 +285,6 @@ else:
                 plt.title(f"Diagrama de Venn (Universo U = {u_val}, Fuera = {out_val})")
                 st.pyplot(fig)
 
-        # ------------------ 3 CONJUNTOS ------------------
         else:
             st.subheader("Ingresa los valores del Diagrama de 3 Conjuntos:")
             
